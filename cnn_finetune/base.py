@@ -104,12 +104,9 @@ class ModelWrapperBase(nn.Module, metaclass=ModelWrapperMeta):
         self.pool = self.get_pool() if pool is default else pool
         self.input_size = input_size
 
-        if pretrained:
-            self.original_model_info = self.get_original_model_info(
-                original_model
-            )
-        else:
-            self.original_model_info = None
+        self.original_model_info = self.get_original_model_info(
+            original_model
+        )
 
         if input_size:
             classifier_in_features = self.calculate_classifier_in_features(
