@@ -18,12 +18,14 @@ __all__ = [
 class PretrainedModelsWrapper(ModelWrapperBase):
 
     def get_original_model_info(self, original_model):
+        model_info = pretrainedmodels.pretrained_settings[self.model_name]
+        model_info = model_info[sorted(model_info.keys())[0]]
         return ModelInfo(
-            input_space=original_model.input_space,
-            input_size=original_model.input_size,
-            input_range=original_model.input_range,
-            mean=original_model.mean,
-            std=original_model.std,
+            input_space=model_info['input_space'],
+            input_size=model_info['input_size'],
+            input_range=model_info['input_range'],
+            mean=model_info['mean'],
+            std=model_info['std'],
         )
 
     def get_original_model(self):
